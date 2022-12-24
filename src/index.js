@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const TodoList = () => {
+  const items = ['Drink tea', 'Learn React', 'Build Awesome App'];
+
   return (
     <ul>
-      <li>Learn React</li>
-      <li>Build Awesome App</li>
+      <li>{ items[0] }</li>
+      <li>{ items[1] }</li>
+      <li>{ items[2] }</li>
     </ul>
   );
 }
@@ -17,14 +20,30 @@ const AppHeader = () => {
 }
 
 const SearchPanel = () => {
+  const searchText = "Type here to search";
+
+  const searchStyle = {
+    fontSize: "20px"
+  }
+
   return (
-    <input placeholder="search" />
+    <input
+    style={ searchStyle }
+    placeholder={ searchText }
+    className="foo"
+    htmlFor=""
+    autoComplete=""/>
   );
 }
 
 const App = () => {
+  const isLoggedIn = false;
+  const loginBox = <span>Log in, please</span>;
+  const welcomeBox = <span>Welcome Back</span>
+
   return (
     <div>
+      { isLoggedIn ? welcomeBox : loginBox }
       <AppHeader />
       <SearchPanel />
       <TodoList />
@@ -32,10 +51,4 @@ const App = () => {
   );
 }
 
-// const el = (
-//   <App />
-//   );
-
 ReactDOM.render(<App />, document.getElementById('root'));
-
-// ReactDOM.render(el, document.getElementById('root'));
