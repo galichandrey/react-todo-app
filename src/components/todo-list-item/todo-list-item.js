@@ -12,15 +12,17 @@ export default class TodoListItem extends Component {
     };
 
     this.onLabelClick = () => {
-      this.setState({
-        done: true
+      this.setState( ({done}) => {
+        return {done: !done};
       });
     }
   }
 
   onMarkImportant = () => {
-    this.setState({
-      important: true
+    this.setState(({important})=>{
+      return {
+        important: !important
+      }
     })
   };
 
@@ -37,10 +39,10 @@ export default class TodoListItem extends Component {
       classNames += ' important';
     }
 
-    const style = {
-      fontWeight: important ? "bold" : "normal",
-      color: important ? "red" : "black" 
-    }
+    // const style = {
+    //   fontWeight: important ? "bold" : "normal",
+    //   color: important ? "red" : "black" 
+    // }
   
     return (
       <span className={classNames}>
