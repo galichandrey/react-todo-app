@@ -1,10 +1,31 @@
-import React, { Component } from 'react';
-import './todo-list-item.css';
+import React, { Component } from "react";
+import "./todo-list-item.css";
 
 export default class TodoListItem extends Component {
-  
+
+  constructor() {
+    super();
+    
+    this.state = {
+      done: false
+    };
+
+    this.onLabelClick = () => {
+      // console.log(`Done: ${this.props.label}`);
+      this.setState({
+        done: true
+      });
+    }
+  }
+
   render() {
     const { label, important = false }  = this.props;
+    const {done} = this.state;
+
+    let classNames = 'todo-list-item';
+    if (done) {
+      classNames += ' done';
+    }
 
     const style = {
       fontWeight: important ? "bold" : "normal",
@@ -12,10 +33,11 @@ export default class TodoListItem extends Component {
     }
   
     return (
-      <span className="todo-list-item">
+      <span className={classNames}>
         <span
         className="todo-list-item-label"
-        style={style}>
+        style={style}
+        onClick={ this.onLabelClick }>
           { label }
         </span>
   
